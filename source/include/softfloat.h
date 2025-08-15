@@ -78,6 +78,15 @@ enum {
 };
 
 /*----------------------------------------------------------------------------
+| Software floating-point NaN output mode.
+*----------------------------------------------------------------------------*/
+extern THREAD_LOCAL uint_fast8_t softfloat_NaNMode;
+enum {
+    softfloat_preserve_NaN     = 0,
+    softfloat_canonicalize_NaN = 1
+};
+
+/*----------------------------------------------------------------------------
 | Software floating-point exception flags.
 *----------------------------------------------------------------------------*/
 extern THREAD_LOCAL uint_fast8_t softfloat_exceptionFlags;

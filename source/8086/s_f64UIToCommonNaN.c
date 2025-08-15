@@ -48,7 +48,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 void softfloat_f64UIToCommonNaN( uint_fast64_t uiA, struct commonNaN *zPtr )
 {
 
-    if ( softfloat_isSigNaNF64UI( uiA ) ) {
+    uint_fast8_t nanMode = softfloat_NaNMode;
+    if ( nanMode == softfloat_preserve_NaN && softfloat_isSigNaNF64UI( uiA ) ) {
         softfloat_raiseFlags( softfloat_flag_invalid );
     }
     zPtr->sign = uiA>>63;

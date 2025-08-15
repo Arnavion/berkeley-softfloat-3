@@ -45,7 +45,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 uint_fast32_t softfloat_commonNaNToF32UI( const struct commonNaN *aPtr )
 {
 
-    return (uint_fast32_t) aPtr->sign<<31 | 0x7FC00000 | aPtr->v64>>41;
+    uint_fast8_t nanMode = softfloat_NaNMode;
+    if ( nanMode == softfloat_preserve_NaN)
+        return (uint_fast32_t) aPtr->sign<<31 | 0x7FC00000 | aPtr->v64>>41;
+    else
+        return (uint_fast32_t) 0x7FC00000;
 
 }
 
